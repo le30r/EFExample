@@ -66,14 +66,15 @@ namespace SupplyApp
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.itemGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.itemGrid.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.itemGrid.Location = new System.Drawing.Point(12, 12);
+            this.itemGrid.Location = new System.Drawing.Point(7, 83);
+            this.itemGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.itemGrid.Name = "itemGrid";
             this.itemGrid.RowHeadersVisible = false;
             this.itemGrid.RowHeadersWidth = 51;
             this.itemGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.itemGrid.RowTemplate.Height = 24;
             this.itemGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.itemGrid.Size = new System.Drawing.Size(882, 275);
+            this.itemGrid.Size = new System.Drawing.Size(662, 223);
             this.itemGrid.TabIndex = 0;
             // 
             // itemContextMenu
@@ -86,42 +87,45 @@ namespace SupplyApp
             this.updateItem,
             this.removeItem});
             this.itemContextMenu.Name = "itemContextMenu";
-            this.itemContextMenu.Size = new System.Drawing.Size(211, 128);
+            this.itemContextMenu.Size = new System.Drawing.Size(129, 92);
+            this.itemContextMenu.Opened += new System.EventHandler(this.itemContextMenu_Opened);
             // 
             // refreshItem
             // 
             this.refreshItem.Name = "refreshItem";
-            this.refreshItem.Size = new System.Drawing.Size(210, 24);
+            this.refreshItem.Size = new System.Drawing.Size(128, 22);
             this.refreshItem.Text = "Обновить";
             this.refreshItem.Click += new System.EventHandler(this.refreshItem_Click);
             // 
             // addItem
             // 
             this.addItem.Name = "addItem";
-            this.addItem.Size = new System.Drawing.Size(210, 24);
+            this.addItem.Size = new System.Drawing.Size(128, 22);
             this.addItem.Text = "Добавить";
             this.addItem.Click += new System.EventHandler(this.addItem_Click);
             // 
             // updateItem
             // 
             this.updateItem.Name = "updateItem";
-            this.updateItem.Size = new System.Drawing.Size(210, 24);
+            this.updateItem.Size = new System.Drawing.Size(128, 22);
             this.updateItem.Text = "Изменить";
+            this.updateItem.Click += new System.EventHandler(this.updateItem_Click);
             // 
             // removeItem
             // 
             this.removeItem.Name = "removeItem";
-            this.removeItem.Size = new System.Drawing.Size(210, 24);
+            this.removeItem.Size = new System.Drawing.Size(128, 22);
             this.removeItem.Text = "Удалить";
             this.removeItem.Click += new System.EventHandler(this.removeItem_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(906, 498);
+            this.ClientSize = new System.Drawing.Size(680, 405);
             this.Controls.Add(this.itemGrid);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поставки";

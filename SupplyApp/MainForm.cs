@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace SupplyApp
 {
     public partial class MainForm : Form
     {
+        GridItem row;
         public MainForm()
         {
             InitializeComponent();
@@ -89,6 +91,26 @@ namespace SupplyApp
                 }
             }
             SetItemGrid();
+        }
+
+        private void updateItem_Click(object sender, EventArgs e)
+        {
+      
+            if (itemGrid.SelectedCells.Count > 0)
+            {
+                var i = itemGrid.SelectedCells[0].OwningRow.Index;
+                EditItemForm edit = new EditItemForm((int)itemGrid[0, i].Value, (string)itemGrid[1, i].Value, (string)itemGrid[2, i].Value, (decimal)itemGrid[3, i].Value);
+                if (edit.ShowDialog(this) == DialogResult.OK)
+                {
+                 
+                }   
+            }
+            SetItemGrid();
+        }
+
+        private void itemContextMenu_Opened(object sender, EventArgs e)
+        {
+          
         }
     }
 }
