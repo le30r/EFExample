@@ -36,6 +36,22 @@ namespace SupplyApp
             }
         }
 
+        public IEnumerable GetSuppliers()
+        {
+            using (var db = new SupplyModel())
+            {
+                var suppliers = from supplier in db.Supplier
+                                select new
+                                {
+                                    supplier.ID,
+                                    supplier.Name,
+                                    supplier.Address,
+                                    supplier.Phone
+                                };
+                return suppliers.ToList();
+            }
+        }
+
         // Заполнение таблицы с товарами
         private void SetItemGrid()
         {            
@@ -46,10 +62,35 @@ namespace SupplyApp
             itemGrid.Columns[3].HeaderText = "Стоимость";
         }
 
+        private void SetSupplierGrid()
+        {
+            supplierDataGrid.DataSource = GetSuppliers();
+            supplierDataGrid.Columns[0].HeaderText = "Код поставщика";
+            supplierDataGrid.Columns[1].HeaderText = "Название";
+            supplierDataGrid.Columns[2].HeaderText = "Адрес";
+            supplierDataGrid.Columns[3].HeaderText = "Телефон";
+        }
+
+        private void SetSupplyGrid()
+        {
+            supplyGrid.DataSource = GetSupplies();
+            supplyGrid.Columns[0].HeaderText = "Дата поставки";
+            supplyGrid.Columns[1].HeaderText = "Поставщик";
+            supplyGrid.Columns[2].HeaderText = "Артикул";
+            supplyGrid.Columns[3].HeaderText = "Наименование";
+            supplyGrid.Columns[4].HeaderText = "Объем";
+            supplyGrid.Columns[5].HeaderText = "Суммарная стоимость";
+
+
+        }
+
+
         // Обновляем данные в таблице при загрузке формы
         private void MainForm_Load(object sender, EventArgs e)
         {
             SetItemGrid();
+            SetSupplierGrid();
+            SetSupplyGrid();
         }
 
         // Обновляем данные в таблице при нажатии кнопки Обновить
@@ -108,9 +149,102 @@ namespace SupplyApp
             SetItemGrid();
         }
 
-        private void itemContextMenu_Opened(object sender, EventArgs e)
+        private void updateSuppliersItem_Click(object sender, EventArgs e)
         {
-          
+            SetSupplierGrid();
+        }
+
+        private void addSupplierItem_Click(object sender, EventArgs e)
+        {
+            AddSupplierForm add = new AddSupplierForm();
+            if (add.ShowDialog(this) == DialogResult.OK)
+            {
+                SetSupplierGrid();   
+            }
+        }
+
+        private void supplierMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void editSupplierItem_Click(object sender, EventArgs e)
+        {
+
+            if (supplierDataGrid.SelectedCells.Count > 0)
+            {
+                var i = supplierDataGrid.SelectedCells[0].OwningRow.Index;
+                EditSupplierForm edit = new EditSupplierForm((int)supplierDataGrid[0, i].Value, (string)supplierDataGrid[1, i].Value, (string)supplierDataGrid[2, i].Value, (string)supplierDataGrid[3, i].Value);
+                if (edit.ShowDialog(this) == DialogResult.OK)
+                {
+
+                }
+            }
+            SetSupplierGrid();
+        }
+
+        private void deleteSupplierItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public IEnumerable GetSupplies()
+        {
+            using (var db = new SupplyModel())
+            {
+                var supplies = from supply in db.Supply
+                               select new
+                               {
+                                   supply.Date,
+                                   Supplier = supply.Supplier.Name,
+                                   supply.ItemID,
+                                   Item = supply.Item.Name,
+                                   supply.Volume,
+                                   Overall = supply.Volume * supply.Item.Price
+                               };
+                return supplies.ToList();
+            }
+        }
+
+        private void updateSupplyMenuItem_Click(object sender, EventArgs e)
+        {
+            SetSupplyGrid();
+        }
+
+        private void supplyMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void addSupplyMenuItem_Click(object sender, EventArgs e)
+        {
+            AddSupplyForm add = new AddSupplyForm();
+            if (add.ShowDialog(this) == DialogResult.OK)
+            {
+                SetSupplyGrid();
+            }
+        }
+
+        private void editSupplyMenuItem_Click(object sender, EventArgs e)
+        {
+            if (supplyGrid.SelectedCells.Count > 0)
+            {
+                var i = supplyGrid.SelectedCells[0].OwningRow.Index;
+                var name = supplyGrid[1, i].Value;
+                int id;
+                using (var db = new SupplyModel())
+                {
+                    id = db.Supplier.Where(s => s.Name == name).FirstOrDefault().ID;
+                }
+                    
+                EditSupplyForm edit = new EditSupplyForm((DateTime)supplyGrid[0, i].Value, id, (int)supplyGrid[2, i].Value, (int)supplyGrid[4, i].Value);
+                if (edit.ShowDialog(this) == DialogResult.OK)
+                {
+
+                }
+            }
+            SetSupplyGrid();
         }
     }
 }
