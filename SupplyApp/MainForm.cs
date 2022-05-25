@@ -183,9 +183,27 @@ namespace SupplyApp
             SetSupplierGrid();
         }
 
-        private void deleteSupplierItem_Click(object sender, EventArgs e)
+        private void deleteSupplierItem_Click_1(object sender, EventArgs e)
         {
-
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить этот элемент?",
+                "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (supplierDataGrid.SelectedCells.Count > 0)
+                {
+                    var i = supplierDataGrid.SelectedCells[0].OwningRow.Index;
+                    int supplierId = (int)supplierDataGrid[0, i].Value;
+                    // Открываем соединение
+                    using (var db = new SupplyModel())
+                    {
+                        Supplier supplier = db.Supplier.Where(x => x.ID == supplierId).First();
+                        db.Supplier.Remove(supplier);
+                        // Обязательно сохраняем изменения в БД
+                        db.SaveChanges();
+                    }
+                }
+            }
+            SetSupplierGrid();
         }
 
 
@@ -246,5 +264,35 @@ namespace SupplyApp
             }
             SetSupplyGrid();
         }
+
+        private void removeSupplyMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите удалить этот элемент?",
+               "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (supplyGrid.SelectedCells.Count > 0)
+                {
+                    var i = supplyGrid.SelectedCells[0].OwningRow.Index;
+                    DateTime date = (DateTime)supplyGrid[0, i].Value;
+                    int itemId = (int)supplyGrid[2, i].Value;
+                    string supplierName = (string)supplyGrid[1, i].Value;
+                    int supplierId;
+                    // Открываем соединение
+                    using (var db = new SupplyModel())
+                    {
+
+                        supplierId = db.Supplier.Where(s => s.Name == supplierName).FirstOrDefault().ID;
+                        Supply supplyToDelete = db.Supply.SingleOrDefault(x => (x.ItemID == itemId && x.SupplierID == supplierId && x.Date == date.Date));
+                        db.Supply.Remove(supplyToDelete);
+                        // Обязательно сохраняем изменения в БД
+                        db.SaveChanges();
+                    }
+                }
+            }
+            SetSupplyGrid();
+        }
+
+        
     }
 }

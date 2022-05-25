@@ -147,7 +147,7 @@ namespace SupplyApp
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(10, 174);
-            this.txtPhone.Mask = "+7(000)-000-00-00";
+            this.txtPhone.Mask = "000-000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(139, 20);
             this.txtPhone.TabIndex = 20;

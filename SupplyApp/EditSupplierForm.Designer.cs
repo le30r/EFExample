@@ -127,8 +127,8 @@ namespace SupplyApp
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(138, 20);
             this.txtName.TabIndex = 11;
-            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
-            this.txtName.Validated += new System.EventHandler(this.txtName_Validated);
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
+            this.txtName.Validated += new System.EventHandler(this.txtPhone_Validated);
             // 
             // txtId
             // 

@@ -222,35 +222,36 @@ namespace SupplyApp
             this.editSupplierItem,
             this.deleteSupplierItem});
             this.supplierMenuStrip.Name = "itemContextMenu";
-            this.supplierMenuStrip.Size = new System.Drawing.Size(129, 92);
+            this.supplierMenuStrip.Size = new System.Drawing.Size(153, 114);
             this.supplierMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.supplierMenuStrip_Opening);
             // 
             // updateSuppliersItem
             // 
             this.updateSuppliersItem.Name = "updateSuppliersItem";
-            this.updateSuppliersItem.Size = new System.Drawing.Size(128, 22);
+            this.updateSuppliersItem.Size = new System.Drawing.Size(152, 22);
             this.updateSuppliersItem.Text = "Обновить";
             this.updateSuppliersItem.Click += new System.EventHandler(this.updateSuppliersItem_Click);
             // 
             // addSupplierItem
             // 
             this.addSupplierItem.Name = "addSupplierItem";
-            this.addSupplierItem.Size = new System.Drawing.Size(128, 22);
+            this.addSupplierItem.Size = new System.Drawing.Size(152, 22);
             this.addSupplierItem.Text = "Добавить";
             this.addSupplierItem.Click += new System.EventHandler(this.addSupplierItem_Click);
             // 
             // editSupplierItem
             // 
             this.editSupplierItem.Name = "editSupplierItem";
-            this.editSupplierItem.Size = new System.Drawing.Size(128, 22);
+            this.editSupplierItem.Size = new System.Drawing.Size(152, 22);
             this.editSupplierItem.Text = "Изменить";
             this.editSupplierItem.Click += new System.EventHandler(this.editSupplierItem_Click);
             // 
             // deleteSupplierItem
             // 
             this.deleteSupplierItem.Name = "deleteSupplierItem";
-            this.deleteSupplierItem.Size = new System.Drawing.Size(128, 22);
+            this.deleteSupplierItem.Size = new System.Drawing.Size(152, 22);
             this.deleteSupplierItem.Text = "Удалить";
+            this.deleteSupplierItem.Click += new System.EventHandler(this.deleteSupplierItem_Click_1);
             // 
             // supplyTabPage
             // 
@@ -308,35 +309,36 @@ namespace SupplyApp
             this.editSupplyMenuItem,
             this.removeSupplyMenuItem});
             this.supplyMenuStrip.Name = "itemContextMenu";
-            this.supplyMenuStrip.Size = new System.Drawing.Size(181, 114);
+            this.supplyMenuStrip.Size = new System.Drawing.Size(129, 92);
             this.supplyMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.supplyMenuStrip_Opening);
             // 
             // updateSupplyMenuItem
             // 
             this.updateSupplyMenuItem.Name = "updateSupplyMenuItem";
-            this.updateSupplyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateSupplyMenuItem.Size = new System.Drawing.Size(128, 22);
             this.updateSupplyMenuItem.Text = "Обновить";
             this.updateSupplyMenuItem.Click += new System.EventHandler(this.updateSupplyMenuItem_Click);
             // 
             // addSupplyMenuItem
             // 
             this.addSupplyMenuItem.Name = "addSupplyMenuItem";
-            this.addSupplyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addSupplyMenuItem.Size = new System.Drawing.Size(128, 22);
             this.addSupplyMenuItem.Text = "Добавить";
             this.addSupplyMenuItem.Click += new System.EventHandler(this.addSupplyMenuItem_Click);
             // 
             // editSupplyMenuItem
             // 
             this.editSupplyMenuItem.Name = "editSupplyMenuItem";
-            this.editSupplyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editSupplyMenuItem.Size = new System.Drawing.Size(128, 22);
             this.editSupplyMenuItem.Text = "Изменить";
             this.editSupplyMenuItem.Click += new System.EventHandler(this.editSupplyMenuItem_Click);
             // 
             // removeSupplyMenuItem
             // 
             this.removeSupplyMenuItem.Name = "removeSupplyMenuItem";
-            this.removeSupplyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeSupplyMenuItem.Size = new System.Drawing.Size(128, 22);
             this.removeSupplyMenuItem.Text = "Удалить";
+            this.removeSupplyMenuItem.Click += new System.EventHandler(this.removeSupplyMenuItem_Click);
             // 
             // MainForm
             // 

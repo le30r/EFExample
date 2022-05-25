@@ -53,17 +53,7 @@ namespace SupplyApp
         // Непустая строка
         private void txtName_Validating(object sender, CancelEventArgs e)
         {
-            string input = txtName.Text.Trim();
-            if (String.IsNullOrEmpty(input))
-            {
-                errorProvider.SetError(txtName, "Ошибка!");
-                e.Cancel = true;
-            }
-            else
-            {
-                errorProvider.SetError(txtName, String.Empty);
-                e.Cancel = false;
-            }
+
         }
 
         // Непустая строка
@@ -145,12 +135,12 @@ namespace SupplyApp
             var input = txtPhone;
             if (!txtPhone.MaskCompleted)
             {
-                errorProvider.SetError(txtName, "Ошибка!");
+                errorProvider.SetError(txtPhone, "Ошибка!");
                 e.Cancel = true;
             }
             else
             {
-                errorProvider.SetError(txtName, String.Empty);
+                errorProvider.SetError(txtPhone, String.Empty);
                 e.Cancel = false;
             }
         }
