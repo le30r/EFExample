@@ -250,13 +250,13 @@ namespace SupplyApp
             {
                 var i = supplyGrid.SelectedCells[0].OwningRow.Index;
                 var name = supplyGrid[1, i].Value;
-                int id;
+                int supplierId;
                 using (var db = new SupplyModel())
                 {
-                    id = db.Supplier.Where(s => s.Name == name).FirstOrDefault().ID;
+                    supplierId = db.Supplier.Where(s => s.Name == name).FirstOrDefault().ID;
                 }
                     
-                EditSupplyForm edit = new EditSupplyForm((DateTime)supplyGrid[0, i].Value, id, (int)supplyGrid[2, i].Value, (int)supplyGrid[4, i].Value);
+                EditSupplyForm edit = new EditSupplyForm((DateTime)supplyGrid[0, i].Value, (int)supplyGrid[2, i].Value, supplierId, (int)supplyGrid[4, i].Value);
                 if (edit.ShowDialog(this) == DialogResult.OK)
                 {
 

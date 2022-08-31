@@ -72,7 +72,8 @@ namespace SupplyApp
                 // Открываем соединение
                 using (var db = new SupplyModel())
                 {
-                    var supply = db.Supply.SingleOrDefault(x=>(x.ItemID == itemId && x.SupplierID == supplierId && x.Date == date.Date));
+                    var supply = db.Supply.Where(x=>x.ItemID == itemId && x.SupplierID == supplierId 
+                    && x.Date == date).FirstOrDefault();
                     supply.Volume = volume;
                     db.SaveChanges();
                    
@@ -93,6 +94,7 @@ namespace SupplyApp
             supplierComboBox.ValueMember = "ID";
             supplierComboBox.DataSource = GetSuppliers();
             
+            
             itemComboBox.DisplayMember = "Name";
             itemComboBox.ValueMember = "ID";
             itemComboBox.DataSource = GetItems();
@@ -103,7 +105,7 @@ namespace SupplyApp
 
         private List<Supplier> GetSuppliers()
         {
-            using (var db   = new SupplyModel())
+            using (var db  = new SupplyModel())
             {
               
                 return db.Supplier.ToList();
@@ -143,12 +145,12 @@ namespace SupplyApp
 
         private void supplierComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           supplierId = (Int32)supplierComboBox.SelectedValue;
+           //supplierId = (Int32)supplierComboBox.SelectedValue;
         }
 
         private void itemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            itemId = (Int32)itemComboBox.SelectedValue;
+           //itemId = (Int32)itemComboBox.SelectedValue;
         }
     }
 }
